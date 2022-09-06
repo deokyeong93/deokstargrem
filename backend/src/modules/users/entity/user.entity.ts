@@ -1,22 +1,25 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-@Table
-export default class Sample extends Model<Sample> {
+@Table({
+  tableName: 'users',
+  timestamps: true,
+})
+export default class User extends Model<User> {
   @Column({
     type: DataType.UUIDV4,
-    primaryKey: true,
     allowNull: false,
+    primaryKey: true,
   })
   id: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT('tiny'),
     allowNull: false,
   })
   name: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT('tiny'),
     unique: true,
     allowNull: false,
   })
@@ -27,11 +30,4 @@ export default class Sample extends Model<Sample> {
     allowNull: false,
   })
   password: string;
-
-  @Column({
-    type: DataType.ENUM,
-    values: ['male', 'female'],
-    allowNull: false,
-  })
-  gender: string;
 }
